@@ -1,0 +1,529 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>KET 小步走计划</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700&family=ZCOOL+KuaiLe&display=swap">
+<style>
+/* Layout: an exercise-book page — grid-paper ground, a four-stage track from Grade 2 to the KET exam, then tools a parent uses each week. */
+:root {
+  --paper: #f3f7fb;
+  --grid: #dce6f0;
+  --card: #ffffff;
+  --ink: #1d2a3a;
+  --muted: #5a6b80;
+  --line: #c9d6e4;
+  --blue: #2f5fd0;
+  --blue-soft: #e3ebfb;
+  --mark: #ffd84d;
+  --mark-soft: #fff4c2;
+  --ok: #1f8a5b;
+  --ok-soft: #dff3e9;
+  --warn: #b5541a;
+  --s1: #4aa3df; --s2: #36b37e; --s3: #f2a33a; --s4: #e0555b;
+  --display: "ZCOOL KuaiLe", "Fredoka", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --latin: "Fredoka", "Nunito", system-ui, sans-serif;
+  --body: "Nunito", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+  --radius: 14px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #121a24; --grid: #1b2633; --card: #18222f; --ink: #e6edf5; --muted: #9fb0c3;
+    --line: #2c3a4b; --blue: #7ea2ff; --blue-soft: #1f2d4a; --mark: #ffd84d; --mark-soft: #3a3214;
+    --ok: #5fd39c; --ok-soft: #173528; --warn: #f0a46b;
+    --s1: #6bb9ec; --s2: #5ccb98; --s3: #f5b85e; --s4: #ef7a7f;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #121a24; --grid: #1b2633; --card: #18222f; --ink: #e6edf5; --muted: #9fb0c3;
+  --line: #2c3a4b; --blue: #7ea2ff; --blue-soft: #1f2d4a; --mark: #ffd84d; --mark-soft: #3a3214;
+  --ok: #5fd39c; --ok-soft: #173528; --warn: #f0a46b;
+  --s1: #6bb9ec; --s2: #5ccb98; --s3: #f5b85e; --s4: #ef7a7f;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--ink);
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+.wrap {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding-block: 0 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+h1, h2, h3 { text-wrap: balance; line-height: 1.25; margin: 0; }
+h2 { font-family: var(--display); font-weight: 400; font-size: clamp(26px, 4vw, 34px); }
+h3 { font-size: 18px; }
+p { margin: 0; }
+.en { font-family: var(--latin); }
+mark { background: linear-gradient(transparent 55%, var(--mark) 55%); color: inherit; padding: 0 2px; }
+:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; border-radius: 6px; }
+
+/* Nav */
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--card); }
+nav.top {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5;
+  background: var(--card); border-bottom: 1px solid var(--line);
+}
+nav.top .inner {
+  max-width: 1080px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none;
+}
+nav.top a {
+  flex: none; padding: 12px 10px; color: var(--muted); text-decoration: none; font-weight: 700; font-size: 15px;
+  border-bottom: 3px solid transparent;
+}
+nav.top a:hover { color: var(--ink); border-bottom-color: var(--mark); }
+
+/* Hero */
+header.hero { padding-block: 40px 28px; display: grid; gap: 20px; }
+.eyebrow { font-family: var(--latin); letter-spacing: .08em; text-transform: uppercase; font-size: 13px; color: var(--blue); font-weight: 600; }
+.hero h1 { font-family: var(--display); font-weight: 400; font-size: clamp(34px, 6vw, 56px); }
+.hero .lead { max-width: 62ch; color: var(--muted); font-size: 17px; }
+.facts { display: flex; flex-wrap: wrap; gap: 10px; }
+.fact { background: var(--card); border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; font-size: 14px; }
+.fact b { font-family: var(--latin); color: var(--blue); }
+
+section { padding-block: 36px 8px; display: grid; gap: 18px; }
+.sec-head { display: grid; gap: 6px; }
+.sec-head p { color: var(--muted); max-width: 65ch; }
+
+/* Grade picker */
+.picker { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.picker span { font-weight: 700; margin-right: 4px; }
+.chip {
+  font: inherit; font-weight: 700; font-size: 15px; cursor: pointer;
+  border: 2px solid var(--line); background: var(--card); color: var(--ink);
+  padding: 6px 14px; border-radius: 999px;
+}
+.chip[aria-pressed="true"] { border-color: var(--ink); background: var(--mark); color: #1d2a3a; }
+
+/* Road */
+.road { position: relative; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.road::before {
+  content: ""; position: absolute; left: 4%; right: 4%; top: 22px; height: 6px; border-radius: 3px;
+  background: linear-gradient(90deg, var(--s1), var(--s2), var(--s3), var(--s4)); opacity: .5;
+}
+.stage {
+  position: relative; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 56px 16px 16px; display: grid; gap: 10px; align-content: start; min-width: 0;
+  transition: transform .2s, box-shadow .2s;
+}
+.stage .dot {
+  position: absolute; top: 8px; left: 16px; width: 34px; height: 34px; border-radius: 50%;
+  background: var(--c); color: #fff; display: grid; place-items: center; font-family: var(--latin); font-weight: 700;
+  box-shadow: 0 0 0 4px var(--card);
+}
+.stage .lvl { font-family: var(--latin); font-weight: 600; color: var(--c); font-size: 14px; letter-spacing: .04em; }
+.stage h3 { font-size: 19px; }
+.stage ul { margin: 0; padding-left: 18px; font-size: 14.5px; }
+.stage li + li { margin-top: 4px; }
+.stage .kpi { display: flex; flex-wrap: wrap; gap: 6px; }
+.stage .kpi span { font-size: 13px; background: var(--blue-soft); border-radius: 6px; padding: 2px 8px; }
+.stage.current { border: 2px solid var(--ink); box-shadow: 6px 6px 0 var(--mark); transform: translateY(-4px); }
+.stage.current .now { display: inline-block; }
+.now { display: none; position: absolute; top: 12px; right: 12px; font-size: 12px; font-weight: 700; background: var(--mark); color: #1d2a3a; border-radius: 6px; padding: 1px 8px; }
+
+/* Detail panel */
+.detail { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; display: grid; gap: 16px; }
+.detail-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; }
+.detail-grid > div { min-width: 0; }
+.detail h4 { margin: 0 0 6px; font-size: 15px; color: var(--blue); }
+.detail ul { margin: 0; padding-left: 18px; font-size: 14.5px; }
+
+/* Exam table */
+.tbl { overflow-x: auto; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); }
+table { border-collapse: collapse; width: 100%; min-width: 640px; font-size: 14.5px; }
+th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+thead th { background: var(--blue-soft); font-weight: 700; }
+tbody tr:last-child td { border-bottom: 0; }
+td.n { font-family: var(--latin); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.paper { font-weight: 700; white-space: nowrap; }
+
+.scale { display: grid; gap: 8px; }
+.bar { display: flex; height: 40px; border-radius: 10px; overflow: hidden; border: 1px solid var(--line); font-size: 13px; font-weight: 700; }
+.bar div { display: grid; place-items: center; color: #1d2a3a; text-align: center; line-height: 1.2; padding: 0 4px; }
+.scale-axis { display: flex; justify-content: space-between; font-family: var(--latin); font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+/* Weekly plan */
+.week { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 8px; }
+.day { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 10px; display: grid; gap: 6px; align-content: start; min-width: 0; }
+.day b { font-size: 14px; }
+.task { font-size: 13px; border-radius: 8px; padding: 4px 8px; background: var(--blue-soft); }
+.task.r { background: var(--ok-soft); }
+.task.s { background: var(--mark-soft); }
+.task.f { background: transparent; border: 1px dashed var(--line); color: var(--muted); }
+.legend { display: flex; flex-wrap: wrap; gap: 12px; font-size: 13px; color: var(--muted); }
+.legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; vertical-align: -1px; margin-right: 4px; }
+
+/* Quiz */
+.quiz { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; display: grid; gap: 16px; }
+.quiz-top { display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between; align-items: center; }
+.quiz select { font: inherit; padding: 6px 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--paper); color: var(--ink); }
+.prompt { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.prompt .cn { font-size: 30px; font-weight: 700; }
+.btn {
+  font: inherit; font-weight: 700; cursor: pointer; border-radius: 10px; padding: 8px 16px;
+  border: 2px solid var(--ink); background: var(--card); color: var(--ink);
+}
+.btn.primary { background: var(--blue); border-color: var(--blue); color: #fff; }
+.opts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.opt {
+  font-family: var(--latin); font-size: 22px; font-weight: 600; cursor: pointer; padding: 14px; border-radius: 12px;
+  border: 2px solid var(--line); background: var(--paper); color: var(--ink);
+}
+.opt:hover { border-color: var(--blue); }
+.opt.right { background: var(--ok-soft); border-color: var(--ok); }
+.opt.wrong { border-color: var(--warn); color: var(--warn); }
+.score { font-family: var(--latin); font-variant-numeric: tabular-nums; color: var(--muted); }
+.feedback { min-height: 1.7em; font-weight: 700; }
+
+/* Checklist */
+.checks { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+.cl { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; display: grid; gap: 8px; align-content: start; }
+.cl h3 { display: flex; justify-content: space-between; gap: 8px; font-size: 16px; }
+.cl h3 small { font-family: var(--latin); color: var(--muted); font-weight: 600; font-variant-numeric: tabular-nums; }
+.cl label { display: flex; gap: 8px; align-items: flex-start; font-size: 14.5px; cursor: pointer; }
+.cl input { margin-top: 6px; accent-color: var(--ok); width: 16px; height: 16px; flex: none; }
+.progress { height: 6px; border-radius: 3px; background: var(--grid); overflow: hidden; }
+.progress div { height: 100%; background: var(--ok); width: 0; transition: width .3s; }
+
+/* Tips */
+.tips { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 14px; }
+.tip { border-left: 4px solid var(--mark); padding: 4px 0 4px 14px; }
+.tip h3 { font-size: 16px; margin-bottom: 4px; }
+.tip p { font-size: 14.5px; color: var(--muted); }
+
+footer { padding-top: 40px; font-size: 13px; color: var(--muted); }
+
+@media (max-width: 860px) {
+  .road { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .road::before { display: none; }
+  .week { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 520px) {
+  .road { grid-template-columns: 1fr; }
+  .opts { grid-template-columns: 1fr; }
+  .week { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+
+<nav class="top" aria-label="页面导航">
+  <div class="inner">
+    <a href="#road">四年路线</a>
+    <a href="#exam">KET 考什么</a>
+    <a href="#week">每周安排</a>
+    <a href="#quiz">单词小测</a>
+    <a href="#checks">里程碑打卡</a>
+    <a href="#tips">家长须知</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+<header class="hero">
+  <div class="eyebrow">A2 Key for Schools · 从二年级起步</div>
+  <h1>KET 小步走计划</h1>
+  <p class="lead">二年级开始，每天 30–40 分钟，按「剑桥少儿英语 Starters → Movers → Flyers → KET」四级台阶往上走。目标是<mark>五年级（或四年级下）从容通过 KET</mark>，争取 Merit 或 Distinction。下面的路线、周计划和打卡清单都可以直接照着用。</p>
+  <div class="facts">
+    <span class="fact">目标等级 <b>CEFR A2</b></span>
+    <span class="fact">核心词汇 <b>≈1500</b> 词</span>
+    <span class="fact">准备周期 <b>3–4</b> 年</span>
+    <span class="fact">每日投入 <b>30–40</b> 分钟</span>
+  </div>
+</header>
+
+<section id="road">
+  <div class="sec-head">
+    <h2>四年路线图</h2>
+    <p>选一下孩子现在的年级，对应的阶段会高亮，下面会展开这一阶段的具体做法。年级只是参考，孩子基础好可以提前一级，吃力就多停一学期。</p>
+  </div>
+  <div class="picker" role="group" aria-label="选择孩子当前年级">
+    <span>孩子现在：</span>
+    <button class="chip" type="button" data-stage="0" id="g2">二年级</button>
+    <button class="chip" type="button" data-stage="1" id="g3">三年级</button>
+    <button class="chip" type="button" data-stage="2" id="g4">四年级</button>
+    <button class="chip" type="button" data-stage="3" id="g5">五年级</button>
+  </div>
+  <div class="road" id="roadCards"></div>
+  <div class="detail" id="detail" aria-live="polite"></div>
+</section>
+
+<section id="exam">
+  <div class="sec-head">
+    <h2>KET 到底考什么</h2>
+    <p>A2 Key for Schools 共三份试卷，总时长约 1 小时 50 分钟。提前知道题型，前几年的练习就能有的放矢：听说读写都要，写作和口语最容易被忽略。</p>
+  </div>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>试卷</th><th>时长</th><th>结构</th><th>考什么</th><th>占比</th></tr></thead>
+      <tbody>
+        <tr><td class="paper">阅读与写作<br><span class="en">Reading &amp; Writing</span></td><td class="n">60 min</td><td class="n">7 parts · 32 题</td><td>Part 1–5 阅读：看告示、配对、长文选择、完形填空、开放填空。<br>Part 6 写一封邮件或便条（<b>25 词以上</b>）；Part 7 看三幅图写故事（<b>35 词以上</b>）。</td><td class="n">50%</td></tr>
+        <tr><td class="paper">听力<br><span class="en">Listening</span></td><td class="n">≈30 min</td><td class="n">5 parts · 25 题</td><td>短对话选图、填信息表、长对话选择、配对。每段播放两遍。</td><td class="n">25%</td></tr>
+        <tr><td class="paper">口语<br><span class="en">Speaking</span></td><td class="n">8–10 min</td><td class="n">2 parts · 两人一组</td><td>Part 1 回答考官关于自己的问题（家庭、学校、爱好）；Part 2 和搭档看图讨论、表达喜好并说明理由。</td><td class="n">25%</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="scale">
+    <h3>成绩怎么看（剑桥英语量表 Cambridge English Scale）</h3>
+    <div class="bar" role="img" aria-label="100到119分获A1证书，120到132分Pass，133到139分Merit，140到150分Distinction">
+      <div style="flex:20;background:var(--grid);color:var(--ink)">A1 证书</div>
+      <div style="flex:13;background:var(--s1)">Pass</div>
+      <div style="flex:7;background:var(--s2)">Merit</div>
+      <div style="flex:11;background:var(--mark)">Distinction · B1</div>
+    </div>
+    <div class="scale-axis"><span>100</span><span>120</span><span>133</span><span>140</span><span>150</span></div>
+  </div>
+</section>
+
+<section id="week">
+  <div class="sec-head">
+    <h2>二年级的一周怎么排</h2>
+    <p>以下是二年级（Starters 阶段）的示范周计划，每天不超过 40 分钟，周末留一天完全休息。坚持比时长更重要。</p>
+  </div>
+  <div class="legend">
+    <span><i style="background:var(--blue-soft)"></i>听 / 说</span>
+    <span><i style="background:var(--ok-soft)"></i>读</span>
+    <span><i style="background:var(--mark-soft)"></i>词汇 / 拼写</span>
+    <span><i style="border:1px dashed var(--line)"></i>放松</span>
+  </div>
+  <div class="week" id="weekGrid"></div>
+</section>
+
+<section id="quiz">
+  <div class="sec-head">
+    <h2>单词小测</h2>
+    <p>给二年级孩子的入门词。点「听发音」让孩子跟读，再从四个选项里选出正确的英文。可以每天玩 5 分钟。</p>
+  </div>
+  <div class="quiz">
+    <div class="quiz-top">
+      <label for="cat">主题：
+        <select id="cat"></select>
+      </label>
+      <span class="score" id="score">0 / 0</span>
+    </div>
+    <div class="prompt">
+      <span class="cn" id="cn">…</span>
+      <button class="btn" type="button" id="speak">听发音</button>
+    </div>
+    <div class="opts" id="opts"></div>
+    <div class="feedback" id="fb" aria-live="polite"></div>
+    <div><button class="btn primary" type="button" id="next">下一题</button></div>
+  </div>
+</section>
+
+<section id="checks">
+  <div class="sec-head">
+    <h2>里程碑打卡</h2>
+    <p>每完成一项就勾上，进度会保存在当前浏览器里。一个阶段勾满 80% 左右，就可以考虑进入下一阶段或报名对应的剑桥少儿考试检验一下。</p>
+  </div>
+  <div class="checks" id="checkGrid"></div>
+</section>
+
+<section id="tips">
+  <div class="sec-head"><h2>家长须知</h2></div>
+  <div class="tips">
+    <div class="tip"><h3>先听后说，先说后写</h3><p>二年级重点是耳朵。每天磨耳朵 15 分钟（动画、儿歌、绘本音频），比背单词表有用得多。</p></div>
+    <div class="tip"><h3>分级阅读是主线</h3><p>从牛津树、海尼曼这类分级读物开始，三年级过渡到桥梁书，四年级读简单章节书。阅读量决定 KET 阅读部分的轻松程度。</p></div>
+    <div class="tip"><h3>用 YLE 当阶段检测</h3><p>Starters、Movers、Flyers 是剑桥少儿英语的三级考试，题型与 KET 一脉相承。不一定都要报名，但用真题做阶段检测很合适。</p></div>
+    <div class="tip"><h3>写作从三年级开始练</h3><p>KET 要求写邮件和看图写故事。三年级起每周写 3–5 句英文日记，四年级开始按 25 词 / 35 词要求练。</p></div>
+    <div class="tip"><h3>口语需要真实对话</h3><p>每周至少一次和外教或家长用英文聊 10 分钟，练习「回答 + 原因」：I like … because …。</p></div>
+    <div class="tip"><h3>报名留出余量</h3><p>KET 一年多次开考，各考点安排不同，热门考点名额紧张。正式考试前 2–3 个月关注当地考点公告，最后半年再刷真题。</p></div>
+  </div>
+</section>
+
+<footer>考试信息依据剑桥大学英语考评部 A2 Key for Schools 现行题型（2020 年改版后）。具体报名时间、费用与考点以当地官方考试中心公布为准。</footer>
+
+</div>
+
+<script>
+const STAGES = [
+  {
+    grade: "二年级", lvl: "STARTERS · Pre-A1", title: "打开耳朵，爱上英语", c: "var(--s1)",
+    kpi: ["词汇 ≈ 400", "自然拼读", "每天 30 分钟"],
+    bullets: ["26 个字母音 + 基础自然拼读", "每天听儿歌、动画 15 分钟", "亲子共读分级绘本"],
+    detail: {
+      "目标": ["认读约 400 个高频词（颜色、数字、动物、家庭、食物、学校）", "能用简单句介绍自己：I'm … I like …", "学期末能独立读完分级读物入门级"],
+      "推荐材料": ["分级读物：牛津阅读树 Level 1–3、海尼曼 GK", "动画：Peppa Pig、Super Simple Songs", "剑桥 Starters 词表 + Fun for Starters"],
+      "检验方式": ["二年级下学期做一套 Starters 真题", "能听懂 Peppa Pig 一集的大意", "能指图说出 50 个物品的英文"]
+    }
+  },
+  {
+    grade: "三年级", lvl: "MOVERS · A1", title: "从会听到会读", c: "var(--s2)",
+    kpi: ["词汇 ≈ 900", "桥梁书", "开始写句子"],
+    bullets: ["分级阅读进阶，开始读桥梁书", "每周写 3–5 句英文日记", "积累一般现在时、过去时"],
+    detail: {
+      "目标": ["词汇量达到约 900", "能读懂 30–50 页的桥梁书", "能写出 5 句话的小段落，讲自己的一天"],
+      "推荐材料": ["桥梁书：Biscuit、Fly Guy、Oxford Reading Tree Level 5–7", "动画：Arthur、Magic School Bus", "Fun for Movers、剑桥 Movers 真题"],
+      "检验方式": ["三年级下学期做 Movers 真题，或报名 Movers 考试", "能复述一本桥梁书的故事", "能连续用英语回答 5 个关于自己的问题"]
+    }
+  },
+  {
+    grade: "四年级", lvl: "FLYERS · A2 预备", title: "阅读量与写作并进", c: "var(--s3)",
+    kpi: ["词汇 ≈ 1300", "章节书", "25 词写作"],
+    bullets: ["读简单章节书，如 Magic Tree House", "按 KET 要求练邮件写作", "口语练习「观点 + 理由」"],
+    detail: {
+      "目标": ["词汇量达到约 1300，覆盖 KET 词表大部分", "能独立读完一本 Magic Tree House", "能写 25 词以上的邮件，包含三个要点"],
+      "推荐材料": ["章节书：Magic Tree House、Nate the Great、Mercy Watson", "Fun for Flyers、剑桥 Flyers 真题", "KET 官方词表（Vocabulary List）开始逐主题过"],
+      "检验方式": ["四年级下学期做 Flyers 真题，可报名 Flyers", "基础好的孩子可以试做一套 KET 真题摸底", "看三幅图能说出一个完整小故事"]
+    }
+  },
+  {
+    grade: "五年级", lvl: "KET · A2 Key", title: "真题冲刺，稳拿证书", c: "var(--s4)",
+    kpi: ["词汇 ≈ 1500", "整套真题", "限时训练"],
+    bullets: ["系统刷 A2 Key for Schools 真题", "Part 7 看图写故事 35 词", "模拟口语双人考试"],
+    detail: {
+      "目标": ["掌握 KET 官方词表约 1500 词", "真题阅读写作、听力稳定在 80% 以上", "口语能自然完成双人讨论"],
+      "推荐材料": ["剑桥官方 A2 Key for Schools 真题集 Trainer / Authentic Practice Tests", "KET 官方词表按主题复习", "录音自测：口语 Part 1、Part 2"],
+      "检验方式": ["考前 3 个月每两周一套完整模拟", "写作请老师按剑桥评分标准批改", "模考成绩达到 133 分以上（Merit）再报名"]
+    }
+  }
+];
+
+const WEEK = [
+  { d: "周一", t: [["听儿歌 / 动画 15'", ""], ["自然拼读 10'", "s"], ["亲子共读 10'", "r"]] },
+  { d: "周二", t: [["听绘本音频 10'", ""], ["新词 8 个 10'", "s"], ["自主读 10'", "r"]] },
+  { d: "周三", t: [["动画跟读 15'", ""], ["复习本周词 10'", "s"], ["亲子共读 10'", "r"]] },
+  { d: "周四", t: [["听儿歌 10'", ""], ["新词 8 个 10'", "s"], ["自主读 10'", "r"]] },
+  { d: "周五", t: [["英文动画 20'", ""], ["单词小测 5'", "s"]] },
+  { d: "周六", t: [["英文对话 10'", ""], ["绘本复述 10'", "r"], ["一周词汇游戏 10'", "s"]] },
+  { d: "周日", t: [["休息 / 自由看英文动画", "f"]] }
+];
+
+const WORDS = {
+  "动物 Animals": [["猫","cat"],["狗","dog"],["鸟","bird"],["鱼","fish"],["马","horse"],["牛","cow"],["鸭子","duck"],["老虎","tiger"],["大象","elephant"],["猴子","monkey"]],
+  "颜色 Colours": [["红色","red"],["蓝色","blue"],["绿色","green"],["黄色","yellow"],["黑色","black"],["白色","white"],["粉色","pink"],["紫色","purple"],["橙色","orange"],["棕色","brown"]],
+  "家庭 Family": [["妈妈","mother"],["爸爸","father"],["哥哥 / 弟弟","brother"],["姐姐 / 妹妹","sister"],["奶奶 / 外婆","grandmother"],["爷爷 / 外公","grandfather"],["宝宝","baby"],["家","home"]],
+  "食物 Food": [["苹果","apple"],["香蕉","banana"],["面包","bread"],["鸡蛋","egg"],["牛奶","milk"],["米饭","rice"],["蛋糕","cake"],["水","water"],["果汁","juice"],["冰淇淋","ice cream"]],
+  "学校 School": [["书","book"],["铅笔","pencil"],["钢笔","pen"],["书包","bag"],["桌子","desk"],["椅子","chair"],["老师","teacher"],["教室","classroom"],["橡皮","eraser"],["尺子","ruler"]],
+  "数字 Numbers": [["一","one"],["二","two"],["三","three"],["四","four"],["五","five"],["六","six"],["七","seven"],["八","eight"],["九","nine"],["十","ten"]]
+};
+
+const CHECKS = [
+  ["Starters 阶段", ["会唱 10 首英文儿歌", "掌握 26 个字母的发音", "能拼读 CVC 单词（cat, dog, pig）", "读完 30 本分级绘本", "认识 400 个高频词", "完成一套 Starters 真题"]],
+  ["Movers 阶段", ["读完 10 本桥梁书", "坚持写英文日记 1 个月", "词汇量达到 900", "能看懂一集无字幕英文动画", "能用英语介绍家人和爱好", "完成一套 Movers 真题"]],
+  ["Flyers 阶段", ["读完第一本章节书", "写出 25 词以上的邮件", "词汇量达到 1300", "能说出「喜欢…因为…」的完整理由", "听力能抓住数字、时间、地点", "完成一套 Flyers 真题"]],
+  ["KET 冲刺", ["过完 KET 官方词表", "完成 5 套完整真题", "Part 7 看图写作达到 35 词", "口语双人模拟 3 次", "模考达到 133 分以上", "完成报名并确认考点"]]
+];
+
+const store = {
+  get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+};
+
+/* Road + detail */
+const road = document.getElementById("roadCards");
+road.innerHTML = STAGES.map((s, i) => `
+  <article class="stage" data-i="${i}" style="--c:${s.c}">
+    <span class="dot">${i + 1}</span><span class="now">现在</span>
+    <div class="lvl">${s.grade} · ${s.lvl}</div>
+    <h3>${s.title}</h3>
+    <div class="kpi">${s.kpi.map(k => `<span>${k}</span>`).join("")}</div>
+    <ul>${s.bullets.map(b => `<li>${b}</li>`).join("")}</ul>
+  </article>`).join("");
+
+function pickStage(i) {
+  document.querySelectorAll(".chip").forEach(c => c.setAttribute("aria-pressed", String(+c.dataset.stage === i)));
+  document.querySelectorAll(".stage").forEach(s => s.classList.toggle("current", +s.dataset.i === i));
+  const s = STAGES[i];
+  document.getElementById("detail").innerHTML = `
+    <h3>${s.grade}：${s.title}</h3>
+    <div class="detail-grid">${Object.entries(s.detail).map(([h, items]) =>
+      `<div><h4>${h}</h4><ul>${items.map(x => `<li>${x}</li>`).join("")}</ul></div>`).join("")}</div>`;
+  store.set("ket-stage", i);
+}
+document.querySelectorAll(".chip").forEach(c => c.addEventListener("click", () => pickStage(+c.dataset.stage)));
+pickStage(store.get("ket-stage", 0));
+
+/* Week */
+document.getElementById("weekGrid").innerHTML = WEEK.map(w => `
+  <div class="day"><b>${w.d}</b>${w.t.map(([t, k]) => `<span class="task ${k}">${t}</span>`).join("")}</div>`).join("");
+
+/* Quiz */
+const catSel = document.getElementById("cat");
+catSel.innerHTML = Object.keys(WORDS).map(k => `<option>${k}</option>`).join("");
+let cur = null, answered = false, right = 0, total = 0;
+const shuffle = a => a.map(v => [Math.random(), v]).sort((x, y) => x[0] - y[0]).map(v => v[1]);
+
+function say(word) {
+  try {
+    const u = new SpeechSynthesisUtterance(word);
+    u.lang = "en-GB"; u.rate = 0.85;
+    speechSynthesis.cancel(); speechSynthesis.speak(u);
+  } catch (e) {
+    document.getElementById("fb").textContent = "这个浏览器不支持朗读，可以请家长读给孩子听。";
+  }
+}
+
+function nextQ() {
+  const list = WORDS[catSel.value];
+  cur = list[Math.floor(Math.random() * list.length)];
+  const others = shuffle(list.filter(w => w !== cur)).slice(0, 3);
+  answered = false;
+  document.getElementById("cn").textContent = cur[0];
+  document.getElementById("fb").textContent = "";
+  document.getElementById("opts").innerHTML = shuffle([cur, ...others])
+    .map(w => `<button class="opt" type="button" data-en="${w[1]}">${w[1]}</button>`).join("");
+}
+document.getElementById("opts").addEventListener("click", e => {
+  const b = e.target.closest(".opt");
+  if (!b || answered) return;
+  answered = true; total++;
+  const ok = b.dataset.en === cur[1];
+  if (ok) right++;
+  b.classList.add(ok ? "right" : "wrong");
+  if (!ok) document.querySelector(`.opt[data-en="${cur[1]}"]`).classList.add("right");
+  document.getElementById("fb").textContent = ok ? "答对了！Great job!" : `正确答案是 ${cur[1]}，再听一遍跟读吧。`;
+  document.getElementById("score").textContent = `${right} / ${total}`;
+  say(cur[1]);
+});
+document.getElementById("speak").addEventListener("click", () => cur && say(cur[1]));
+document.getElementById("next").addEventListener("click", nextQ);
+catSel.addEventListener("change", nextQ);
+nextQ();
+
+/* Checklist */
+const done = store.get("ket-checks", {});
+document.getElementById("checkGrid").innerHTML = CHECKS.map(([name, items], g) => `
+  <div class="cl" data-g="${g}">
+    <h3>${name}<small id="cnt${g}"></small></h3>
+    <div class="progress"><div id="bar${g}"></div></div>
+    ${items.map((it, j) => `<label><input type="checkbox" id="c${g}-${j}" ${done[`${g}-${j}`] ? "checked" : ""}>${it}</label>`).join("")}
+  </div>`).join("");
+function refresh() {
+  CHECKS.forEach(([, items], g) => {
+    const n = items.filter((_, j) => document.getElementById(`c${g}-${j}`).checked).length;
+    document.getElementById(`cnt${g}`).textContent = `${n} / ${items.length}`;
+    document.getElementById(`bar${g}`).style.width = `${(n / items.length) * 100}%`;
+  });
+}
+document.getElementById("checkGrid").addEventListener("change", e => {
+  if (e.target.type !== "checkbox") return;
+  done[e.target.id.slice(1)] = e.target.checked;
+  store.set("ket-checks", done);
+  refresh();
+});
+refresh();
+</script>
+</body>
+</html>
